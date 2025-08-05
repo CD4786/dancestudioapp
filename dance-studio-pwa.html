@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Studio Management System</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkRhbmNlIFN0dWRpbyBNYW5hZ2VtZW50IFN5c3RlbSIsCiAgInNob3J0X25hbWUiOiAiRGFuY2UgU3R1ZGlvIiwKICAiZGVzY3JpcHRpb24iOiAiQ29tcGxldGUgZGFuY2Ugc3R1ZGlvIG1hbmFnZW1lbnQgd2l0aCBtdWx0aS11c2VyIGFjY2VzcyBhbmQgcm9sZS1iYXNlZCBwZXJtaXNzaW9ucyIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzJjM2U1MCIsCiAgInRoZW1lX2NvbG9yIjogIiMwMDdiZmYiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdC1wcmltYXJ5IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0k0TURBaUlHaGxhV2RvZEQwaU9EQXdJajQ4Y21WamRDQjRQU0k0TUNJZ2VUMGlPREFpSUhkcFpIUm9QU0kyTkRBaUlHaGxhV2RvZEQwaU5qUXdJaUJtYVd4c1BTSWpOREU1WTJVaUx6NDhkR1Y0ZENCNFBTSTBNREFpSUhrOUlqUTJNQ0lnZEdWNGRDMWhibU5vYjNJOUltMXBaR1JzWlNJZ1ptbHNiRDBpSXpabU5qWWlJR1p2Ym5RdGMybDZaVDBpTkRRaVBqOHdOems4TDNSbGVIUStQQzl6ZG1jKyIsCiAgICAgICJzaXplcyI6ICI4MDB4ODAwIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhkcFpIUm9QU0kxTVRJaUlHaGxhV2RvZEQwaU5URXJJAJM4Y21WamRDQjRQU0k0TUNJZ2VUMGlPREFpSUhkcFpIUm9QU0kyTkRBaUlHaGxhV2RvZEQwaU5qUXdJaUJtYVd4c1BTSWpOREU1WTJVaUx6NDhkR1Y0ZENCNFBTSTBNREFpSUhrOUlqUTJNQ0lnZEdWNGRDMWhibU5vYjNJOUltMXBaR1JzWlNJZ1ptbHNiRDBpSXpabU5qWWlJR1p2Ym5RdGMybDZaVDBpTkRRaVBqOHdOems4TDNSbGVIUStQQzl6ZG1jKyIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIsCiAgICAgICJwdXJwb3NlIjogImFueSIKICAgIH0KICBdLAogICJjYXRlZ29yaWVzIjogWyJidXNpbmVzcyIsICJwcm9kdWN0aXZpdHkiLCAiZWR1Y2F0aW9uIl0sCiAgImxhbmciOiAiZW4iLAogICJkaXIiOiAibHRyIgp9">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#007bff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Dance Studio">
+    <meta name="msapplication-TileColor" content="#007bff">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; 
+            background: linear-gradient(135deg, #4a90e2 0%, #f5d76e 30%, #f5d76e 70%, #4a90e2 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Install Prompt Styles */
+        .install-prompt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #28a745;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .install-prompt button {
+            background: white;
+            color: #28a745;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .install-prompt button:hover {
+            background: #f8f9fa;
+        }
+        
+        .window {
+            background: #2c3e50;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .window-title { flex: 1; }
+        
+        .user-info {
+            position: absolute;
+            right: 120px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .window-controls {
+            display: flex;
+            gap: 8px;
+            position: absolute;
+            right: 20px;
+        }
+        
+        .window-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .minimize { background: #f1c40f; }
+        .maximize { background: #27ae60; }
+        .close { background: #e74c3c; }
+        
+        .main-container {
+            background: #f8f9fa;
+            height: calc(100vh - 70px);
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .sidebar {
+            width: 240px;
+            background: white;
+            border-right: 1px solid #dee2e6;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .nav-menu {
+            flex: 1;
+            padding: 20px 0;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .nav-item.active {
+            background: #e3f2fd;
+            border-left-color: #2196f3;
+            color: #1976d2;
+            font-weight: 500;
+        }
+        
+        .nav-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        
+        .nav-icon {
+            font-size: 18px;
+            margin-right: 12px;
+            width: 20px;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #007bff;
+            color: white;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            margin-left: auto;
+        }
+        
+        .role-badge.admin { background: #dc3545; }
+        .role-badge.manager { background: #28a745; }
+        .role-badge.staff { background: #ffc107; color: #212529; }
+        .role-badge.instructor { background: #17a2b8; }
+        
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+        }
+        
+        .header-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .header-nav h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #007bff;
+            transition: transform 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .stat-card:nth-child(2) { border-left-color: #28a745; }
+        .stat-card:nth-child(3) { border-left-color: #ffc107; }
+        .stat-card:nth-child(4) { border-left-color: #dc3545; }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #007bff;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        
+        .card-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .card-header h2 {
+            font-size: 20px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .list-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .list-item:last-child { border-bottom: none; }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .form-group { margin-bottom: 20px; }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        .form-group textarea { height: 80px; resize: vertical; }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-right: 10px;
+        }
+        
+        .btn-primary { background: #007bff; color: white; }
+        .btn-primary:hover { background: #0056b3; }
+        
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #545b62; }
+        
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-danger:hover { background: #c82333; }
+        
+        .btn-success { background: #28a745; color: white; }
+        .btn-success:hover { background: #218838; }
+        
+        .btn-warning { background: #ffc107; color: #212529; }
+        .btn-warning:hover { background: #e0a800; }
+        
+        .hidden { display: none !important; }
+        
+        .calendar-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .calendar-header {
+            background: #007bff;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .calendar-nav button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .calendar-nav button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .calendar-nav input {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(var(--instructor-count, 3), 1fr);
+        }
+        
+        .calendar-header-cell {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 2px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .time-cell {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            border-right: 1px solid #dee2e6;
+            font-weight: 500;
+            text-align: center;
+            background: #fafafa;
+        }
+        
+        .time-slot {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            border-right: 1px solid #dee2e6;
+            min-height: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .time-slot:hover {
+            background: #e3f2fd;
+        }
+        
+        .time-slot.booked {
+            background: #4caf50;
+            color: white;
+            cursor: default;
+        }
+        
+        .time-slot.booked:hover {
+            background: #45a049;
+        }
+        
+        .time-slot.readonly {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .lesson {
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .lesson-student {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+        
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            font-size: 12px;
+            z-index: 100;
+        }
+        
+        .login-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        .login-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .login-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .permission-denied {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .access-info {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .access-info h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .pwa-info {
+            background: #e8f5e8;
+            border: 1px solid #d4edda;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .pwa-info h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .content-area {
+                padding: 20px;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendar-grid {
+                font-size: 12px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PWA Install Prompt -->
+    <div id="installPrompt" class="install-prompt">
+        <div>
+            📱 <strong>Install Dance Studio Manager</strong> for the best experience!
+            <button onclick="installApp()">Install App</button>
+            <button onclick="dismissInstall()">Not Now</button>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginContainer" class="login-container">
+        <div class="login-form">
+            <h1 class="login-title">🕺 Dance Studio</h1>
+            <p class="login-subtitle">Management System - PWA</p>
+            
+            <div class="pwa-info">
+                <h4>🚀 Progressive Web App</h4>
+                <p>This app works offline and can be installed like a native app!</p>
+            </div>
+            
+            <div class="form-group">
+                <input type="email" id="loginEmail" placeholder="Email Address" value="admin@dancestudio.com">
+            </div>
+            <div class="form-group">
+                <input type="password" id="loginPassword" placeholder="Password" value="admin123">
+            </div>
+            <button onclick="login()" class="btn btn-primary" style="width: 100%;">Login</button>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: left;">
+                <h4 style="color: #2c3e50; margin-bottom: 15px;">Demo Accounts:</h4>
+                <div style="font-size: 12px; line-height: 1.6;">
+                    <strong>👑 Admin:</strong> admin@dancestudio.com / admin123<br>
+                    <strong>💼 Manager:</strong> manager@dancestudio.com / manager123<br>
+                    <strong>👥 Staff:</strong> staff@dancestudio.com / staff123<br>
+                    <strong>🎭 Instructor:</strong> sarah@dancestudio.com / instructor123
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="hidden">
+        <!-- Window Bar -->
+        <div class="window">
+            <span class="window-title">Dance Studio Management System - PWA</span>
+            <div class="user-info" id="userInfo">
+                Logged in as: <span id="currentUserName">-</span> (<span id="currentUserRole">-</span>)
+            </div>
+            <div class="window-controls">
+                <div class="window-control minimize"></div>
+                <div class="window-control maximize"></div>
+                <div class="window-control close"></div>
+            </div>
+        </div>
+
+        <div class="main-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <nav class="nav-menu">
+                    <div class="nav-item active" onclick="showSection('dashboard')">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                    </div>
+                    <div class="nav-item" onclick="showSection('calendar')" id="navCalendar">
+                        <span class="nav-icon">📅</span>
+                        Daily Calendar
+                    </div>
+                    <div class="nav-item" onclick="showSection('students')" id="navStudents">
+                        <span class="nav-icon">👥</span>
+                        Students
+                    </div>
+                    <div class="nav-item" onclick="showSection('instructors')" id="navInstructors">
+                        <span class="nav-icon">👨‍🏫</span>
+                        Instructors
+                    </div>
+                    <div class="nav-item" onclick="showSection('privateLessons')" id="navLessons">
+                        <span class="nav-icon">🎯</span>
+                        Private Lessons
+                    </div>
+                    <div class="nav-item" onclick="showSection('users')" id="navUsers">
+                        <span class="nav-icon">👤</span>
+                        User Management
+                        <span class="role-badge admin">ADMIN</span>
+                    </div>
+                    <div class="nav-item" onclick="showSection('reports')" id="navReports">
+                        <span class="nav-icon">📈</span>
+                        Reports
+                    </div>
+                    <div class="nav-item" onclick="showSection('settings')" id="navSettings">
+                        <span class="nav-icon">⚙️</span>
+                        Settings
+                    </div>
+                </nav>
+                <button onclick="logout()" class="btn btn-secondary" style="margin: 20px;">
+                    Logout
+                </button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard Section -->
+                <div id="dashboardSection" class="section">
+                    <div class="header-nav">
+                        <h1>Dashboard</h1>
+                        <div class="header-actions">
+                            <button onclick="showTodayLessons()" class="btn btn-success">Today's Schedule</button>
+                        </div>
+                    </div>
+
+                    <div class="access-info">
+                        <h4>Welcome <span id="dashboardUserName">User</span>!</h4>
+                        <p>You are logged in as <strong><span id="dashboardUserRole">-</span></strong>. <span id="accessDescription">-</span></p>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalStudents">0</div>
+                            <div class="stat-label">Total Students</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalInstructors">0</div>
+                            <div class="stat-label">Total Instructors</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalLessons">0</div>
+                            <div class="stat-label">Private Lessons</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="todayLessons">0</div>
+                            <div class="stat-label">Today's Lessons</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Today's Private Lessons</h2>
+                            <button onclick="showSection('calendar')" class="btn btn-primary" id="viewCalendarBtn">View Calendar</button>
+                        </div>
+                        <div class="card-body" id="todaysLessons">
+                            Loading...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Section -->
+                <div id="calendarSection" class="section hidden">
+                    <div class="header-nav">
+                        <h1>Daily Calendar</h1>
+                        <div class="header-actions">
+                            <button onclick="showTodayLessons()" class="btn btn-success">Today's Lessons</button>
+                        </div>
+                    </div>
+
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <h2>Lesson Booking</h2>
+                            <div class="calendar-nav">
+                                <button onclick="changeDate(-1)">← Prev</button>
+                                <input type="date" id="calendarDate" onchange="renderInstructorCalendar()">
+                                <button onclick="changeDate(1)">Next →</button>
+                                <button onclick="goToToday()" class="btn-success">Today</button>
+                            </div>
+                        </div>
+                        <div id="instructorCalendar">
+                            Loading calendar...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Students Section -->
+                <div id="studentsSection" class="section hidden">
+                    <div class="header-nav">
+                        <h1>Student Management</h1>
+                        <div class="header-actions">
+                            <button onclick="showAddStudent()" class="btn btn-primary" id="addStudentBtn">+ Add Student</button>
+                        </div>
+                    </div>
+
+                    <div id="studentsContent">
+                        <!-- Add Student Form -->
+                        <div id="addStudentForm" class="card hidden">
+                            <div class="card-header">
+                                <h2>Add New Student</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>First Name *</label>
+                                        <input type="text" id="studentFirstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last Name *</label>
+                                        <input type="text" id="studentLastName" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" id="studentEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input type="tel" id="studentPhone">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Emergency Contact Name</label>
+                                        <input type="text" id="emergencyName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Emergency Contact Phone</label>
+                                        <input type="tel" id="emergencyPhone">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Medical Notes</label>
+                                    <textarea id="medicalNotes" placeholder="Any medical conditions, allergies, or special notes"></textarea>
+                                </div>
+                                <div>
+                                    <button onclick="saveStudent()" class="btn btn-primary">Save Student</button>
+                                    <button onclick="cancelAddStudent()" class="btn btn-secondary">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>All Students</h2>
+                            </div>
+                            <div class="card-body" id="studentsList">
+                                Loading students...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="studentsPermissionDenied" class="permission-denied hidden">
+                        <h3>🚫 Access Restricted</h3>
+                        <p>Your current role doesn't have permission to manage students.</p>
+                        <p>Contact your administrator for access.</p>
+                    </div>
+                </div>
+
+                <!-- Instructors Section -->
+                <div id="instructorsSection" class="section hidden">
+                    <div class="header-nav">
+                        <h1>Instructor Management</h1>
+                        <div class="header-actions">
+                            <button onclick="showAddInstructor()" class="btn btn-primary" id="addInstructorBtn">+ Add Instructor</button>
+                        </div>
+                    </div>
+
+                    <div id="instructorsContent">
+                        <!-- Add Instructor Form -->
+                        <div id="addInstructorForm" class="card hidden">
+                            <div class="card-header">
+                                <h2>Add New Instructor</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>First Name *</label>
+                                        <input type="text" id="instructorFirstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last Name *</label>
+                                        <input type="text" id="instructorLastName" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" id="instructorEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input type="tel" id="instructorPhone">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Specialties</label>
+                                        <input type="text" id="specialties" placeholder="e.g., Ballet, Hip-Hop, Jazz">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Hourly Rate ($)</label>
+                                        <input type="number" id="hourlyRate" step="0.01" min="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Bio</label>
+                                    <textarea id="instructorBio" placeholder="Brief bio and experience"></textarea>
+                                </div>
+                                <div>
+                                    <button onclick="saveInstructor()" class="btn btn-primary">Save Instructor</button>
+                                    <button onclick="cancelAddInstructor()" class="btn btn-secondary">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>All Instructors</h2>
+                            </div>
+                            <div class="card-body" id="instructorsList">
+                                Loading instructors...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="instructorsPermissionDenied" class="permission-denied hidden">
+                        <h3>🚫 Access Restricted</h3>
+                        <p>Your current role doesn't have permission to manage instructors.</p>
+                        <p>Contact your administrator for access.</p>
+                    </div>
+                </div>
+
+                <!-- Private Lessons Section -->
+                <div id="privateLessonsSection" class="section hidden">
+                    <div class="header-nav">
+                        <h1>Private Lessons</h1>
+                        <div class="header-actions">
+                            <button onclick="showSection('calendar')" class="btn btn-primary" id="bookLessonBtn">Book New Lesson</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>All Private Lessons</h2>
+                        </div>
+                        <div class="card-body" id="lessonsList">
+                            Loading lessons...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Management Section -->
+                <div id="usersSection" class="section hidden">
+                    <div class="header-nav">
+                        <h1>User Management</h1>
+                        <div class="header-actions">
+                            <button onclick="showAddUser()" class="btn btn-primary">+ Add User</button>
+                        </div>
+                    </div>
+
+                    <!-- Add User Form -->
+                    <div id="addUserForm" class="card hidden">
+                        <div class="card-header">
+                            <h2>Add New User</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>First Name *</label>
+                                    <input type="text" id="userFirstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name *</label>
+                                    <input type="text" id="userLastName" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Email *</label>
+                                    <input type="email" id="userEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Role *</label>
+                                    <select id="userRole" required onchange="showRoleDescription()">
+                                        <option value="">Select role</option>
+                                        <option value="admin">Admin - Full Access</option>
+                                        <option value="manager">Manager - High Access</option>
+                                        <option value="staff">Staff - Limited Access</option>
+                                        <option value="instructor">Instructor - Restricted Access</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Password *</label>
+                                <input type="password" id="userPassword" required>
+                            </div>
+                            <div id="roleDescription" class="access-info hidden">
+                                <h4>Role Permissions:</h4>
+                                <p id="roleDescriptionText">Select a role to see permissions</p>
+                            </div>
+                            <div>
+                                <button onclick="saveUser()" class="btn btn-primary">Save User</button>
+                                <button onclick="cancelAddUser()" class="btn btn-secondary">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>All Users</h2>
+                        </div>
+                        <div class="card-body" id="usersList">
+                            Loading users...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reports Section -->
+                <div id="reportsSection" class="section hidden">
+                    <div id="reportsContent">
+                        <div class="header-nav">
+                            <h1>Reports & Analytics</h1>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Studio Analytics</h2>
+                            </div>
+                            <div class="card-body">
+                                <p>Reports and analytics are available for Admin and Manager roles.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="reportsPermissionDenied" class="permission-denied hidden">
+                        <h3>🚫 Access Restricted</h3>
+                        <p>Your current role doesn't have permission to view reports.</p>
+                        <p>Contact your administrator for access.</p>
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div id="settingsSection" class="section hidden">
+                    <div id="settingsContent">
+                        <div class="header-nav">
+                            <h1>Settings</h1>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>System Settings</h2>
+                            </div>
+                            <div class="card-body">
+                                <p>System settings are available for Admin users only.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="settingsPermissionDenied" class="permission-denied hidden">
+                        <h3>🚫 Access Restricted</h3>
+                        <p>Your current role doesn't have permission to change settings.</p>
+                        <p>Contact your administrator for access.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <span id="statusLeft">Dance Studio Management System - PWA (Progressive Web App)</span>
+        <span id="statusRight">Ready</span>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <h2>Book Lesson</h2>
+            <div class="form-group">
+                <label>Student *</label>
+                <select id="lessonStudent" required>
+                    <option value="">Select a student</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Lesson Type *</label>
+                <select id="lessonType" required>
+                    <option value="">Select lesson type</option>
+                    <option value="Private Lesson">Private Lesson</option>
+                    <option value="Group Lesson">Group Lesson</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Duration (minutes) *</label>
+                <select id="lessonDuration" onchange="updatePrice()">
+                    <option value="30">30 minutes</option>
+                    <option value="45">45 minutes</option>
+                    <option value="60" selected>60 minutes</option>
+                    <option value="90">90 minutes</option>
+                    <option value="120">120 minutes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input type="text" id="lessonPrice" readonly style="background: #f8f9fa;">
+            </div>
+            <div class="form-group">
+                <label>Notes</label>
+                <textarea id="lessonNotes" placeholder="Special instructions or notes for this lesson"></textarea>
+            </div>
+            <div>
+                <button onclick="bookLesson()" class="btn btn-primary">Book Lesson</button>
+                <button onclick="closeModals()" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // PWA Installation Variables
+        let deferredPrompt;
+        let installPromptShown = localStorage.getItem('installPromptShown') === 'true';
+
+        // Data Storage
+        let users = JSON.parse(localStorage.getItem('studioUsers') || '[]');
+        let students = JSON.parse(localStorage.getItem('danceStudents') || '[]');
+        let instructors = JSON.parse(localStorage.getItem('danceInstructors') || '[]');
+        let privateLessons = JSON.parse(localStorage.getItem('privateLessons') || '[]');
+        let currentUser = null;
+        let currentDate = new Date();
+        let currentSection = 'dashboard';
+        let selectedSlot = null;
+
+        // Time slots for the calendar (9 AM to 9 PM)
+        const timeSlots = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+
+        // Role permissions
+        const rolePermissions = {
+            admin: {
+                students: { view: true, create: true, edit: true, delete: true },
+                instructors: { view: true, create: true, edit: true, delete: true },
+                lessons: { view: true, create: true, edit: true, delete: true },
+                users: { view: true, create: true, edit: true, delete: true },
+                reports: { view: true },
+                settings: { view: true, edit: true },
+                calendar: { view: true, book: true }
+            },
+            manager: {
+                students: { view: true, create: true, edit: true, delete: false },
+                instructors: { view: true, create: true, edit: true, delete: false },
+                lessons: { view: true, create: true, edit: true, delete: true },
+                users: { view: false, create: false, edit: false, delete: false },
+                reports: { view: true },
+                settings: { view: false, edit: false },
+                calendar: { view: true, book: true }
+            },
+            staff: {
+                students: { view: true, create: false, edit: false, delete: false },
+                instructors: { view: true, create: false, edit: false, delete: false },
+                lessons: { view: true, create: true, edit: false, delete: false },
+                users: { view: false, create: false, edit: false, delete: false },
+                reports: { view: false },
+                settings: { view: false, edit: false },
+                calendar: { view: true, book: true }
+            },
+            instructor: {
+                students: { view: true, create: false, edit: false, delete: false },
+                instructors: { view: false, create: false, edit: false, delete: false },
+                lessons: { view: true, create: false, edit: false, delete: false },
+                users: { view: false, create: false, edit: false, delete: false },
+                reports: { view: false },
+                settings: { view: false, edit: false },
+                calendar: { view: true, book: false }
+            }
+        };
+
+        // PWA Installation Functions
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            if (!installPromptShown) {
+                showInstallPrompt();
+            }
+        });
+
+        function showInstallPrompt() {
+            document.getElementById('installPrompt').style.display = 'block';
+        }
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+            dismissInstall();
+        }
+
+        function dismissInstall() {
+            document.getElementById('installPrompt').style.display = 'none';
+            localStorage.setItem('installPromptShown', 'true');
+            installPromptShown = true;
+        }
+
+        // Initialize system with default users
+        function initializeUsers() {
+            if (users.length === 0) {
+                users = [
+                    {
+                        id: 1,
+                        firstName: 'System',
+                        lastName: 'Admin',
+                        email: 'admin@dancestudio.com',
+                        password: 'admin123',
+                        role: 'admin',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        firstName: 'Studio',
+                        lastName: 'Manager',
+                        email: 'manager@dancestudio.com',
+                        password: 'manager123',
+                        role: 'manager',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 3,
+                        firstName: 'Front',
+                        lastName: 'Staff',
+                        email: 'staff@dancestudio.com',
+                        password: 'staff123',
+                        role: 'staff',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 4,
+                        firstName: 'Sarah',
+                        lastName: 'Johnson',
+                        email: 'sarah@dancestudio.com',
+                        password: 'instructor123',
+                        role: 'instructor',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('studioUsers', JSON.stringify(users));
+            }
+        }
+
+        // Initialize sample data
+        function initializeSampleData() {
+            if (instructors.length === 0) {
+                instructors = [
+                    {
+                        id: 1,
+                        firstName: 'Sarah',
+                        lastName: 'Johnson',
+                        email: 'sarah@dancestudio.com',
+                        phone: '555-0101',
+                        specialties: 'Ballet, Contemporary, Jazz',
+                        hourlyRate: 75.00,
+                        bio: 'Professional ballet instructor with 15 years of experience.',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        firstName: 'Michael',
+                        lastName: 'Rodriguez',
+                        email: 'michael@dancestudio.com',
+                        phone: '555-0102',
+                        specialties: 'Hip-Hop, Street Dance, Breakdancing',
+                        hourlyRate: 70.00,
+                        bio: 'Award-winning hip-hop choreographer and battle champion.',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 3,
+                        firstName: 'Emma',
+                        lastName: 'Williams',
+                        email: 'emma@dancestudio.com',
+                        phone: '555-0103',
+                        specialties: 'Modern, Lyrical, Contemporary',
+                        hourlyRate: 72.00,
+                        bio: 'Contemporary dance specialist with performance background.',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('danceInstructors', JSON.stringify(instructors));
+            }
+
+            if (students.length === 0) {
+                students = [
+                    {
+                        id: 1,
+                        firstName: 'Emma',
+                        lastName: 'Davis',
+                        email: 'emma.davis@email.com',
+                        phone: '555-0201',
+                        emergency: 'Jane Davis',
+                        emergencyPhone: '555-0202',
+                        medical: 'No known allergies',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        firstName: 'Lucas',
+                        lastName: 'Thompson',
+                        email: 'lucas.thompson@email.com',
+                        phone: '555-0203',
+                        emergency: 'Mark Thompson',
+                        emergencyPhone: '555-0204',
+                        medical: '',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 3,
+                        firstName: 'Olivia',
+                        lastName: 'Martinez',
+                        email: 'olivia.martinez@email.com',
+                        phone: '555-0205',
+                        emergency: 'Sofia Martinez',
+                        emergencyPhone: '555-0206',
+                        medical: 'Mild asthma',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('danceStudents', JSON.stringify(students));
+            }
+
+            // Add some sample lessons for today
+            if (privateLessons.length === 0) {
+                const today = new Date().toISOString().split('T')[0];
+                privateLessons = [
+                    {
+                        id: Date.now() + 1,
+                        studentId: 1,
+                        studentName: 'Emma Davis',
+                        instructorId: 1,
+                        instructorName: 'Sarah Johnson',
+                        date: today,
+                        startTime: 9,
+                        duration: 60,
+                        lessonType: 'Private Lesson',
+                        price: 75.00,
+                        notes: 'Focus on technique and posture',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: Date.now() + 2,
+                        studentId: 2,
+                        studentName: 'Lucas Thompson',
+                        instructorId: 2,
+                        instructorName: 'Michael Rodriguez',
+                        date: today,
+                        startTime: 10,
+                        duration: 45,
+                        lessonType: 'Private Lesson',
+                        price: 52.50,
+                        notes: 'Work on rhythm and flow',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: Date.now() + 3,
+                        studentId: 3,
+                        studentName: 'Olivia Martinez',
+                        instructorId: 1,
+                        instructorName: 'Sarah Johnson',
+                        date: today,
+                        startTime: 13,
+                        duration: 60,
+                        lessonType: 'Group Lesson',
+                        price: 75.00,
+                        notes: 'Group session fundamentals',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('privateLessons', JSON.stringify(privateLessons));
+            }
+        }
+
+        // Login function with role-based access
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                document.getElementById('loginContainer').classList.add('hidden');
+                document.getElementById('mainApp').classList.remove('hidden');
+                
+                // Update user info in header
+                document.getElementById('currentUserName').textContent = `${user.firstName} ${user.lastName}`;
+                document.getElementById('currentUserRole').textContent = user.role.toUpperCase();
+                
+                initializeSampleData();
+                updateAllData();
+                setupUserInterface();
+                renderInstructorCalendar();
+                setCalendarToToday();
+                updateStatus(`Logged in as ${user.role}`);
+            } else {
+                alert('Invalid email or password');
+            }
+        }
+
+        // Setup user interface based on role
+        function setupUserInterface() {
+            const role = currentUser.role;
+            const permissions = rolePermissions[role];
+
+            // Update dashboard welcome message
+            document.getElementById('dashboardUserName').textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+            document.getElementById('dashboardUserRole').textContent = role.toUpperCase();
+            
+            const accessDescriptions = {
+                admin: 'You have full access to all features and settings.',
+                manager: 'You have high-level access to manage operations.',
+                staff: 'You have access to daily operations and lesson booking.',
+                instructor: 'You have access to view your schedule and student information.'
+            };
+            document.getElementById('accessDescription').textContent = accessDescriptions[role];
+
+            // Show/hide navigation items based on permissions
+            document.getElementById('navUsers').style.display = permissions.users.view ? 'flex' : 'none';
+            document.getElementById('navReports').style.display = permissions.reports.view ? 'flex' : 'none';
+            document.getElementById('navSettings').style.display = permissions.settings.view ? 'flex' : 'none';
+
+            // Set disabled state for limited access
+            if (!permissions.students.create) {
+                const nav = document.getElementById('navStudents');
+                if (nav) nav.classList.add('disabled');
+            }
+            if (!permissions.instructors.create) {
+                const nav = document.getElementById('navInstructors');
+                if (nav) nav.classList.add('disabled');
+            }
+        }
+
+        // Check permissions before allowing actions
+        function hasPermission(resource, action) {
+            if (!currentUser) return false;
+            const permissions = rolePermissions[currentUser.role];
+            return permissions[resource] && permissions[resource][action];
+        }
+
+        // Section navigation with permission checks
+        function showSection(sectionName) {
+            // Check permissions
+            if (sectionName === 'users' && !hasPermission('users', 'view')) {
+                alert('Access denied: You do not have permission to manage users.');
+                return;
+            }
+            if (sectionName === 'reports' && !hasPermission('reports', 'view')) {
+                alert('Access denied: You do not have permission to view reports.');
+                return;
+            }
+            if (sectionName === 'settings' && !hasPermission('settings', 'view')) {
+                alert('Access denied: You do not have permission to access settings.');
+                return;
+            }
+
+            // Update navigation state
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            const navElement = document.querySelector(`[onclick="showSection('${sectionName}')"]`);
+            if (navElement) navElement.classList.add('active');
+
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Show target section
+            const targetSection = document.getElementById(sectionName + 'Section');
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                currentSection = sectionName;
+            }
+
+            // Show/hide content based on permissions
+            if (sectionName === 'students') {
+                const hasAccess = hasPermission('students', 'view');
+                const content = document.getElementById('studentsContent');
+                const denied = document.getElementById('studentsPermissionDenied');
+                const addBtn = document.getElementById('addStudentBtn');
+                
+                if (content) content.style.display = hasAccess ? 'block' : 'none';
+                if (denied) denied.style.display = hasAccess ? 'none' : 'block';
+                if (addBtn) addBtn.style.display = hasPermission('students', 'create') ? 'inline-block' : 'none';
+            }
+            
+            if (sectionName === 'instructors') {
+                const hasAccess = hasPermission('instructors', 'view');
+                const content = document.getElementById('instructorsContent');
+                const denied = document.getElementById('instructorsPermissionDenied');
+                const addBtn = document.getElementById('addInstructorBtn');
+                
+                if (content) content.style.display = hasAccess ? 'block' : 'none';
+                if (denied) denied.style.display = hasAccess ? 'none' : 'block';
+                if (addBtn) addBtn.style.display = hasPermission('instructors', 'create') ? 'inline-block' : 'none';
+            }
+            
+            if (sectionName === 'reports') {
+                const hasAccess = hasPermission('reports', 'view');
+                const content = document.getElementById('reportsContent');
+                const denied = document.getElementById('reportsPermissionDenied');
+                
+                if (content) content.style.display = hasAccess ? 'block' : 'none';
+                if (denied) denied.style.display = hasAccess ? 'none' : 'block';
+            }
+            
+            if (sectionName === 'settings') {
+                const hasAccess = hasPermission('settings', 'view');
+                const content = document.getElementById('settingsContent');
+                const denied = document.getElementById('settingsPermissionDenied');
+                
+                if (content) content.style.display = hasAccess ? 'block' : 'none';
+                if (denied) denied.style.display = hasAccess ? 'none' : 'block';
+            }
+
+            // Update data when switching to relevant sections
+            switch(sectionName) {
+                case 'dashboard':
+                    updateDashboard();
+                    break;
+                case 'calendar':
+                    renderInstructorCalendar();
+                    break;
+                case 'students':
+                    if (hasPermission('students', 'view')) loadStudents();
+                    break;
+                case 'instructors':
+                    if (hasPermission('instructors', 'view')) loadInstructors();
+                    break;
+                case 'privateLessons':
+                    loadPrivateLessons();
+                    break;
+                case 'users':
+                    if (hasPermission('users', 'view')) loadUsers();
+                    break;
+            }
+
+            updateStatus(`Viewing ${sectionName} section`);
+        }
+
+        // User Management Functions
+        function showAddUser() {
+            if (!hasPermission('users', 'create')) {
+                alert('Access denied: You cannot create users.');
+                return;
+            }
+            document.getElementById('addUserForm').classList.remove('hidden');
+            document.getElementById('userFirstName').focus();
+        }
+
+        function cancelAddUser() {
+            document.getElementById('addUserForm').classList.add('hidden');
+            clearUserForm();
+        }
+
+        function showRoleDescription() {
+            const role = document.getElementById('userRole').value;
+            const descriptions = {
+                admin: 'Full access to all features, user management, and system settings.',
+                manager: 'High-level access to manage operations, view reports, but cannot manage users.',
+                staff: 'Limited access to daily operations, lesson booking, and viewing data.',
+                instructor: 'Restricted access to view schedules and assigned student information only.'
+            };
+            
+            if (role) {
+                document.getElementById('roleDescription').classList.remove('hidden');
+                document.getElementById('roleDescriptionText').textContent = descriptions[role];
+            } else {
+                document.getElementById('roleDescription').classList.add('hidden');
+            }
+        }
+
+        function saveUser() {
+            if (!hasPermission('users', 'create')) {
+                alert('Access denied: You cannot create users.');
+                return;
+            }
+
+            const firstName = document.getElementById('userFirstName').value.trim();
+            const lastName = document.getElementById('userLastName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const role = document.getElementById('userRole').value;
+            const password = document.getElementById('userPassword').value.trim();
+
+            if (!firstName || !lastName || !email || !role || !password) {
+                alert('All fields are required');
+                return;
+            }
+
+            // Check if email already exists
+            if (users.find(u => u.email === email)) {
+                alert('A user with this email already exists');
+                return;
+            }
+
+            const user = {
+                id: Date.now(),
+                firstName,
+                lastName,
+                email,
+                password,
+                role,
+                createdAt: new Date().toISOString()
+            };
+
+            users.push(user);
+            localStorage.setItem('studioUsers', JSON.stringify(users));
+            loadUsers();
+            cancelAddUser();
+            alert(`User ${firstName} ${lastName} added successfully!`);
+        }
+
+        function deleteUser(id) {
+            if (!hasPermission('users', 'delete')) {
+                alert('Access denied: You cannot delete users.');
+                return;
+            }
+
+            if (id === currentUser.id) {
+                alert('You cannot delete your own account.');
+                return;
+            }
+
+            const user = users.find(u => u.id === id);
+            if (confirm(`Are you sure you want to delete ${user.firstName} ${user.lastName}?`)) {
+                users = users.filter(u => u.id !== id);
+                localStorage.setItem('studioUsers', JSON.stringify(users));
+                loadUsers();
+                alert(`User ${user.firstName} ${user.lastName} deleted`);
+            }
+        }
+
+        function loadUsers() {
+            const container = document.getElementById('usersList');
+            if (users.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No users yet.</p>';
+                return;
+            }
+
+            container.innerHTML = users.map(user => `
+                <div class="list-item">
+                    <div>
+                        <strong>${user.firstName} ${user.lastName}</strong>
+                        <span class="role-badge ${user.role}">${user.role.toUpperCase()}</span><br>
+                        <small>📧 ${user.email}</small><br>
+                        <small>Created: ${new Date(user.createdAt).toLocaleDateString()}</small>
+                    </div>
+                    <div>
+                        ${user.id === currentUser.id ? 
+                            '<span style="color: #666; font-style: italic;">Current User</span>' : 
+                            hasPermission('users', 'delete') ? 
+                                `<button onclick="deleteUser(${user.id})" class="btn btn-danger">Delete</button>` : 
+                                ''
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function clearUserForm() {
+            ['userFirstName', 'userLastName', 'userEmail', 'userRole', 'userPassword'].forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.value = '';
+            });
+            const roleDesc = document.getElementById('roleDescription');
+            if (roleDesc) roleDesc.classList.add('hidden');
+        }
+
+        // Calendar functionality with role-based restrictions
+        function renderInstructorCalendar() {
+            const selectedDate = document.getElementById('calendarDate').value;
+            currentDate = new Date(selectedDate);
+            
+            const container = document.getElementById('instructorCalendar');
+            const dayLessons = privateLessons.filter(l => l.date === selectedDate);
+
+            // Filter instructors based on role
+            let visibleInstructors = instructors;
+            if (currentUser.role === 'instructor') {
+                // Instructors can only see their own schedule
+                visibleInstructors = instructors.filter(i => i.email === currentUser.email);
+            }
+
+            if (visibleInstructors.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 40px; color: #666;">No instructors available or visible to your role.</p>';
+                return;
+            }
+
+            let html = `<div class="calendar-grid" style="--instructor-count: ${visibleInstructors.length};">`;
+            
+            // Header row
+            html += '<div class="calendar-header-cell">TIME</div>';
+            visibleInstructors.forEach(instructor => {
+                html += `
+                    <div class="calendar-header-cell">
+                        <strong>${instructor.firstName} ${instructor.lastName}</strong><br>
+                        <small>$${instructor.hourlyRate}/hr</small>
+                    </div>
+                `;
+            });
+
+            // Time slots
+            timeSlots.forEach(hour => {
+                html += `<div class="time-cell">${formatTime(hour)}</div>`;
+                
+                visibleInstructors.forEach(instructor => {
+                    const lesson = dayLessons.find(l => 
+                        l.instructorId === instructor.id && l.startTime === hour
+                    );
+                    
+                    if (lesson) {
+                        html += `
+                            <div class="time-slot booked">
+                                <div class="lesson">${lesson.lessonType}</div>
+                                <div class="lesson-student">${lesson.studentName}</div>
+                            </div>
+                        `;
+                    } else {
+                        const canBook = hasPermission('calendar', 'book');
+                        const slotClass = canBook ? 'time-slot' : 'time-slot readonly';
+                        const onclick = canBook ? `onclick="openBookingModal(${instructor.id}, '${instructor.firstName} ${instructor.lastName}', ${hour})"` : '';
+                        
+                        html += `<div class="${slotClass}" ${onclick}></div>`;
+                    }
+                });
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Booking modal with permission check
+        function openBookingModal(instructorId, instructorName, startTime) {
+            if (!hasPermission('calendar', 'book')) {
+                alert('Access denied: You do not have permission to book lessons.');
+                return;
+            }
+            
+            selectedSlot = { instructorId, instructorName, startTime };
+            
+            // Populate student dropdown
+            const studentSelect = document.getElementById('lessonStudent');
+            studentSelect.innerHTML = '<option value="">Select a student</option>';
+            students.forEach(student => {
+                studentSelect.innerHTML += `
+                    <option value="${student.id}" data-name="${student.firstName} ${student.lastName}">
+                        ${student.firstName} ${student.lastName}
+                    </option>
+                `;
+            });
+
+            // Reset form
+            document.getElementById('lessonType').value = '';
+            document.getElementById('lessonDuration').value = '60';
+            document.getElementById('lessonPrice').value = '';
+            document.getElementById('lessonNotes').value = '';
+            
+            updatePrice();
+            document.getElementById('bookingModal').style.display = 'flex';
+        }
+
+        function updatePrice() {
+            if (!selectedSlot) return;
+            
+            const instructor = instructors.find(i => i.id === selectedSlot.instructorId);
+            const duration = parseInt(document.getElementById('lessonDuration').value);
+            
+            if (instructor && duration) {
+                const price = (instructor.hourlyRate * duration / 60).toFixed(2);
+                document.getElementById('lessonPrice').value = `$${price}`;
+            }
+        }
+
+        function bookLesson() {
+            if (!hasPermission('calendar', 'book')) {
+                alert('Access denied: You cannot book lessons.');
+                return;
+            }
+
+            const studentId = parseInt(document.getElementById('lessonStudent').value);
+            const lessonType = document.getElementById('lessonType').value;
+            const duration = parseInt(document.getElementById('lessonDuration').value);
+            const notes = document.getElementById('lessonNotes').value;
+
+            if (!studentId || !lessonType) {
+                alert('Please select a student and lesson type');
+                return;
+            }
+
+            const student = students.find(s => s.id === studentId);
+            const instructor = instructors.find(i => i.id === selectedSlot.instructorId);
+            const price = parseFloat(document.getElementById('lessonPrice').value.replace('$', ''));
+
+            const lesson = {
+                id: Date.now(),
+                studentId,
+                studentName: `${student.firstName} ${student.lastName}`,
+                instructorId: selectedSlot.instructorId,
+                instructorName: selectedSlot.instructorName,
+                date: document.getElementById('calendarDate').value,
+                startTime: selectedSlot.startTime,
+                duration,
+                lessonType,
+                price,
+                notes,
+                createdAt: new Date().toISOString()
+            };
+
+            privateLessons.push(lesson);
+            localStorage.setItem('privateLessons', JSON.stringify(privateLessons));
+            
+            updateAllData();
+            renderInstructorCalendar();
+            closeModals();
+            
+            alert(`${lessonType} booked successfully for ${student.firstName} ${student.lastName}!`);
+            updateStatus(`Lesson booked: ${lessonType} with ${instructor.firstName} ${instructor.lastName}`);
+        }
+
+        // Student management with permission checks
+        function showAddStudent() {
+            if (!hasPermission('students', 'create')) {
+                alert('Access denied: You cannot add students.');
+                return;
+            }
+            document.getElementById('addStudentForm').classList.remove('hidden');
+            document.getElementById('studentFirstName').focus();
+        }
+
+        function saveStudent() {
+            if (!hasPermission('students', 'create')) {
+                alert('Access denied: You cannot create students.');
+                return;
+            }
+
+            const firstName = document.getElementById('studentFirstName').value.trim();
+            const lastName = document.getElementById('studentLastName').value.trim();
+
+            if (!firstName || !lastName) {
+                alert('First and Last name are required');
+                return;
+            }
+
+            const student = {
+                id: Date.now(),
+                firstName,
+                lastName,
+                email: document.getElementById('studentEmail').value.trim(),
+                phone: document.getElementById('studentPhone').value.trim(),
+                emergency: document.getElementById('emergencyName').value.trim(),
+                emergencyPhone: document.getElementById('emergencyPhone').value.trim(),
+                medical: document.getElementById('medicalNotes').value.trim(),
+                createdAt: new Date().toISOString()
+            };
+
+            students.push(student);
+            localStorage.setItem('danceStudents', JSON.stringify(students));
+            updateAllData();
+            cancelAddStudent();
+            alert(`Student ${firstName} ${lastName} added successfully!`);
+        }
+
+        function cancelAddStudent() {
+            document.getElementById('addStudentForm').classList.add('hidden');
+            clearStudentForm();
+        }
+
+        function clearStudentForm() {
+            ['studentFirstName', 'studentLastName', 'studentEmail', 'studentPhone', 
+             'emergencyName', 'emergencyPhone', 'medicalNotes'].forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.value = '';
+            });
+        }
+
+        function deleteStudent(id) {
+            if (!hasPermission('students', 'delete')) {
+                alert('Access denied: You cannot delete students.');
+                return;
+            }
+            
+            const student = students.find(s => s.id === id);
+            if (confirm(`Are you sure you want to delete ${student.firstName} ${student.lastName}?`)) {
+                students = students.filter(s => s.id !== id);
+                localStorage.setItem('danceStudents', JSON.stringify(students));
+                updateAllData();
+                alert(`Student ${student.firstName} ${student.lastName} deleted`);
+            }
+        }
+
+        function loadStudents() {
+            const container = document.getElementById('studentsList');
+            if (students.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No students yet. Add your first student above!</p>';
+                return;
+            }
+
+            const canDelete = hasPermission('students', 'delete');
+            
+            container.innerHTML = students.map(student => `
+                <div class="list-item">
+                    <div>
+                        <strong>${student.firstName} ${student.lastName}</strong><br>
+                        <small>📧 ${student.email || 'No email'} • 📱 ${student.phone || 'No phone'}</small><br>
+                        <small><strong>Emergency:</strong> ${student.emergency || 'None'} ${student.emergencyPhone ? '• ' + student.emergencyPhone : ''}</small>
+                        ${student.medical ? `<br><small><strong>Medical:</strong> ${student.medical}</small>` : ''}
+                    </div>
+                    <div>
+                        ${canDelete ? `<button onclick="deleteStudent(${student.id})" class="btn btn-danger">Delete</button>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Instructor management functions
+        function showAddInstructor() {
+            if (!hasPermission('instructors', 'create')) {
+                alert('Access denied: You cannot add instructors.');
+                return;
+            }
+            document.getElementById('addInstructorForm').classList.remove('hidden');
+            document.getElementById('instructorFirstName').focus();
+        }
+
+        function saveInstructor() {
+            if (!hasPermission('instructors', 'create')) {
+                alert('Access denied: You cannot create instructors.');
+                return;
+            }
+
+            const firstName = document.getElementById('instructorFirstName').value.trim();
+            const lastName = document.getElementById('instructorLastName').value.trim();
+
+            if (!firstName || !lastName) {
+                alert('First and Last name are required');
+                return;
+            }
+
+            const instructor = {
+                id: Date.now(),
+                firstName,
+                lastName,
+                email: document.getElementById('instructorEmail').value.trim(),
+                phone: document.getElementById('instructorPhone').value.trim(),
+                specialties: document.getElementById('specialties').value.trim(),
+                hourlyRate: parseFloat(document.getElementById('hourlyRate').value) || 0,
+                bio: document.getElementById('instructorBio').value.trim(),
+                createdAt: new Date().toISOString()
+            };
+
+            instructors.push(instructor);
+            localStorage.setItem('danceInstructors', JSON.stringify(instructors));
+            updateAllData();
+            renderInstructorCalendar();
+            cancelAddInstructor();
+            alert(`Instructor ${firstName} ${lastName} added successfully!`);
+        }
+
+        function cancelAddInstructor() {
+            document.getElementById('addInstructorForm').classList.add('hidden');
+            clearInstructorForm();
+        }
+
+        function clearInstructorForm() {
+            ['instructorFirstName', 'instructorLastName', 'instructorEmail', 'instructorPhone', 
+             'specialties', 'hourlyRate', 'instructorBio'].forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.value = '';
+            });
+        }
+
+        function deleteInstructor(id) {
+            if (!hasPermission('instructors', 'delete')) {
+                alert('Access denied: You cannot delete instructors.');
+                return;
+            }
+            
+            const instructor = instructors.find(i => i.id === id);
+            if (confirm(`Are you sure you want to delete ${instructor.firstName} ${instructor.lastName}?`)) {
+                instructors = instructors.filter(i => i.id !== id);
+                localStorage.setItem('danceInstructors', JSON.stringify(instructors));
+                updateAllData();
+                renderInstructorCalendar();
+                alert(`Instructor ${instructor.firstName} ${instructor.lastName} deleted`);
+            }
+        }
+
+        function loadInstructors() {
+            const container = document.getElementById('instructorsList');
+            if (instructors.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No instructors yet. Add your first instructor above!</p>';
+                return;
+            }
+
+            const canDelete = hasPermission('instructors', 'delete');
+
+            container.innerHTML = instructors.map(instructor => `
+                <div class="list-item">
+                    <div>
+                        <strong>${instructor.firstName} ${instructor.lastName}</strong><br>
+                        <small>📧 ${instructor.email || 'No email'} • 📱 ${instructor.phone || 'No phone'}</small><br>
+                        <small><strong>Specialties:</strong> ${instructor.specialties || 'None specified'}</small><br>
+                        <small><strong>Rate:</strong> $${instructor.hourlyRate}/hour</small>
+                        ${instructor.bio ? `<br><small><em>${instructor.bio}</em></small>` : ''}
+                    </div>
+                    <div>
+                        ${canDelete ? `<button onclick="deleteInstructor(${instructor.id})" class="btn btn-danger">Delete</button>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadPrivateLessons() {
+            const container = document.getElementById('lessonsList');
+            
+            // Filter lessons based on role
+            let visibleLessons = privateLessons;
+            if (currentUser.role === 'instructor') {
+                // Instructors can only see their own lessons
+                const instructor = instructors.find(i => i.email === currentUser.email);
+                if (instructor) {
+                    visibleLessons = privateLessons.filter(l => l.instructorId === instructor.id);
+                } else {
+                    visibleLessons = [];
+                }
+            }
+            
+            if (visibleLessons.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">No lessons visible to your role.</p>';
+                return;
+            }
+
+            const sortedLessons = visibleLessons.sort((a, b) => {
+                const dateCompare = new Date(b.date) - new Date(a.date);
+                if (dateCompare !== 0) return dateCompare;
+                return b.startTime - a.startTime;
+            });
+
+            const canCancel = hasPermission('lessons', 'delete');
+
+            container.innerHTML = sortedLessons.map(lesson => {
+                const endTime = lesson.startTime + (lesson.duration / 60);
+                return `
+                    <div class="list-item">
+                        <div>
+                            <strong>${lesson.lessonType}</strong><br>
+                            <small><strong>Student:</strong> ${lesson.studentName}</small><br>
+                            <small><strong>Instructor:</strong> ${lesson.instructorName}</small><br>
+                            <small><strong>Date:</strong> ${new Date(lesson.date).toLocaleDateString()} at ${formatTime(lesson.startTime)} - ${formatTime(endTime)}</small><br>
+                            <small><strong>Duration:</strong> ${lesson.duration} min • <strong>Price:</strong> $${lesson.price}</small>
+                            ${lesson.notes ? `<br><small><strong>Notes:</strong> ${lesson.notes}</small>` : ''}
+                        </div>
+                        <div>
+                            ${canCancel ? `<button onclick="cancelLesson(${lesson.id})" class="btn btn-danger">Cancel</button>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function cancelLesson(id) {
+            if (!hasPermission('lessons', 'delete')) {
+                alert('Access denied: You cannot cancel lessons.');
+                return;
+            }
+
+            const lesson = privateLessons.find(l => l.id === id);
+            if (confirm(`Are you sure you want to cancel the ${lesson.lessonType} for ${lesson.studentName}?`)) {
+                privateLessons = privateLessons.filter(l => l.id !== id);
+                localStorage.setItem('privateLessons', JSON.stringify(privateLessons));
+                updateAllData();
+                renderInstructorCalendar();
+                alert('Lesson cancelled successfully');
+            }
+        }
+
+        // Calendar functions
+        function setCalendarToToday() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('calendarDate');
+            if (dateInput) {
+                dateInput.value = today;
+                currentDate = new Date(today);
+            }
+        }
+
+        function goToToday() {
+            setCalendarToToday();
+            renderInstructorCalendar();
+        }
+
+        function changeDate(direction) {
+            currentDate.setDate(currentDate.getDate() + direction);
+            const dateInput = document.getElementById('calendarDate');
+            if (dateInput) {
+                dateInput.value = currentDate.toISOString().split('T')[0];
+            }
+            renderInstructorCalendar();
+        }
+
+        // Dashboard functions
+        function updateDashboard() {
+            document.getElementById('totalStudents').textContent = students.length;
+            document.getElementById('totalInstructors').textContent = instructors.length;
+            document.getElementById('totalLessons').textContent = privateLessons.length;
+            
+            const today = new Date().toISOString().split('T')[0];
+            let todaysLessons = privateLessons.filter(l => l.date === today);
+            
+            // Filter for instructor role
+            if (currentUser.role === 'instructor') {
+                const instructor = instructors.find(i => i.email === currentUser.email);
+                if (instructor) {
+                    todaysLessons = todaysLessons.filter(l => l.instructorId === instructor.id);
+                }
+            }
+            
+            document.getElementById('todayLessons').textContent = todaysLessons.length;
+            
+            const container = document.getElementById('todaysLessons');
+            if (todaysLessons.length === 0) {
+                container.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">No lessons scheduled for today.</p>';
+            } else {
+                container.innerHTML = todaysLessons.sort((a, b) => a.startTime - b.startTime).map(lesson => {
+                    const endTime = lesson.startTime + (lesson.duration / 60);
+                    return `
+                        <div style="padding: 15px; border-bottom: 1px solid #eee; border-left: 4px solid #007bff; margin-bottom: 10px;">
+                            <strong>${lesson.lessonType}</strong><br>
+                            <small>👤 ${lesson.studentName} | 👨‍🏫 ${lesson.instructorName}</small><br>
+                            <small>🕐 ${formatTime(lesson.startTime)} - ${formatTime(endTime)} | 💰 $${lesson.price}</small>
+                            ${lesson.notes ? `<br><small>📝 ${lesson.notes}</small>` : ''}
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function showTodayLessons() {
+            const today = new Date().toISOString().split('T')[0];
+            let todaysLessons = privateLessons.filter(l => l.date === today);
+            
+            // Filter for instructor role
+            if (currentUser.role === 'instructor') {
+                const instructor = instructors.find(i => i.email === currentUser.email);
+                if (instructor) {
+                    todaysLessons = todaysLessons.filter(l => l.instructorId === instructor.id);
+                }
+            }
+            
+            if (todaysLessons.length === 0) {
+                alert('No lessons scheduled for today.');
+            } else {
+                const lessonList = todaysLessons
+                    .sort((a, b) => a.startTime - b.startTime)
+                    .map(l => {
+                        const endTime = l.startTime + (l.duration / 60);
+                        return `• ${formatTime(l.startTime)}-${formatTime(endTime)}: ${l.lessonType} - ${l.studentName} with ${l.instructorName}`;
+                    }).join('\n');
+                alert(`Today's Lessons (${todaysLessons.length}):\n\n${lessonList}`);
+            }
+        }
+
+        // Utility functions
+        function formatTime(hour) {
+            const period = hour >= 12 ? 'PM' : 'AM';
+            const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+            return `${displayHour}:00 ${period}`;
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                currentUser = null;
+                document.getElementById('mainApp').classList.add('hidden');
+                document.getElementById('loginContainer').classList.remove('hidden');
+                updateStatus('Logged out');
+            }
+        }
+
+        // Modal functions
+        function closeModals() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            selectedSlot = null;
+        }
+
+        // Update all data
+        function updateAllData() {
+            if (hasPermission('students', 'view')) loadStudents();
+            if (hasPermission('instructors', 'view')) loadInstructors();
+            loadPrivateLessons();
+            updateDashboard();
+        }
+
+        // Update status bar
+        function updateStatus(message) {
+            const statusRight = document.getElementById('statusRight');
+            if (statusRight) statusRight.textContent = message;
+        }
+
+        // Close modals on outside click
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                closeModals();
+            }
+        });
+
+        // Initialize the application
+        initializeUsers();
+        
+        // Auto-login for demo (optional)
+        setTimeout(() => {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            if (email === 'admin@dancestudio.com' && password === 'admin123') {
+                login();
+            }
+        }, 1000);
+
+        // PWA detection and setup
+        window.addEventListener('load', () => {
+            updateStatus('PWA Ready - Works offline!');
+        });
+
+        // Handle app installation
+        window.addEventListener('appinstalled', (evt) => {
+            updateStatus('App installed successfully!');
+        });
+    </script>
+
+    <!-- PWA Service Worker -->
+    <script>
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                const swCode = `
+                    const CACHE_NAME = 'dance-studio-v1';
+                    const urlsToCache = [
+                        './'
+                    ];
+
+                    self.addEventListener('install', function(event) {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(function(cache) {
+                                    return cache.addAll(urlsToCache);
+                                })
+                        );
+                    });
+
+                    self.addEventListener('fetch', function(event) {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(function(response) {
+                                    if (response) {
+                                        return response;
+                                    }
+                                    return fetch(event.request);
+                                })
+                        );
+                    });
+                `;
+
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swURL = URL.createObjectURL(blob);
+
+                navigator.serviceWorker.register(swURL)
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
